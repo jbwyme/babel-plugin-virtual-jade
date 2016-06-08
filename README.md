@@ -1,6 +1,6 @@
 # babel-plugin-virtual-jade
 
-Compiles virtual .jade files into raw css for import into a javascript variables
+Compiles and inlines virtual .jade files
 ```js
 import template from './buttons.jade'
 ```
