@@ -30,7 +30,9 @@ const compileVirtualJadeFile = (jsFile, jadeFile) => {
   }
 
   const jadeContent = fs.readFileSync(path, 'utf8');
-  return vjade(jadeContent);
+  return vjade(jadeContent, {
+    filename: path,
+  });
 };
 
 const resolveModulePath = (filename) => {
