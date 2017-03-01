@@ -20,13 +20,15 @@
   "author": "wymetyme@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "babylon": "^6.8.1",
-    "virtual-jade": ">=0.5.0"
+    "babylon": "^6.8.1"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-preset-es2015": "^6.6.0",
     "eslint": "^2.11.1",
     "eslint-plugin-sorting": "^0.1.0"
+  },
+  "peerDependencies": {
+    "virtual-jade": ">=0.8.2"
   }
 }
