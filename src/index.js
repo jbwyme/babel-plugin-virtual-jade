@@ -16,7 +16,7 @@ const fileExists = filename => {
   }
 };
 
-const compileVirtualJadeFile = (jsFile, jadeFile) => {
+const compileVirtualJadeFile = (jsFile, jadeFile, options={}) => {
   // try to resolve as file path
   const from = resolveModulePath(jsFile);
   let path = resolve(from, jadeFile);
@@ -30,9 +30,9 @@ const compileVirtualJadeFile = (jsFile, jadeFile) => {
   }
 
   const jadeContent = fs.readFileSync(path, 'utf8');
-  return vjade(jadeContent, {
+  return vjade(jadeContent, Object.assign({
     filename: path,
-  });
+  }, options));
 };
 
 const resolveModulePath = (filename) => {
@@ -50,7 +50,7 @@ export default () => {
         if (node && node.source && node.source.value && node.source.type === 'StringLiteral' && node.source.value.endsWith('.jade')) {
           const jsFile = state.file.opts.filename;
           const jadeFile = node.source.value;
-          const jadeFnStr = compileVirtualJadeFile(jsFile, jadeFile);
+          const jadeFnStr = compileVirtualJadeFile(jsFile, jadeFile, state.opts);
           const varName = node.specifiers[0].local.name;
           const srcString = `var ${varName} = ${jadeFnStr}`;
           path.replaceWith(babylon.parse(srcString));
